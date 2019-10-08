@@ -59,10 +59,10 @@ def main():
     annotations = []
 
     layer0_class_strings, layer1_class_strings, class_string_to_parent = get_hierarchy()
-    target_class_string = get_hierarchy()[layer]
+    target_class_strings = get_hierarchy()[layer]
 
     target_class_string_to_class_id = {class_string:i+1 for i, class_string in
-                                        enumerate(sorted(target_class_string))}
+                                        enumerate(sorted(target_class_strings))}
 
     parent_class_string = list(set(class_string_to_parent.values()))
     layer0_independent_class_strings = [class_string for class_string in layer0_class_strings if
@@ -99,3 +99,33 @@ def main():
     bbox_id = 0
 
     for i, img_id in enumerate(tqdm(target_img_ids)):
+        added = False
+        img_path = img_dir.joinpath(img_id + ".jpg")
+        img = cv2.imread(str(img_path),1)
+        h, w, _ = img.shape
+        target_rects = []
+
+        #Collect target boxes
+        for m in img_id_to_meta[img_id]:
+            class_string = m["class_string"]
+
+            #non-target
+            if class_string not in target_class_strings:
+                continue
+
+            xp1, xp2, yp1, yp2 = m["bbox"]
+            target_rects.append(Rect(xp1,yp1,xp2,yp2))
+
+        for m in img_id_to_meta[img_id]:
+            class_string = m["class_string"]
+            xp1, xp2, yp1, yp2 = m["bbox"]
+            x1, x2, y1, y2 = xp1*w , xp2*w, yp1*w, yp2*w
+
+            # For layer1: remove layer0 with no child class
+            if layer == 1 and class_string in layer0_independent_class_strings:
+                continue
+
+            # for both layer0 and layer1: non-target object is removed if it occludes target bbox over 25%
+            if class_string not in target_class_strings:
+                curr_rect = Rect(xp1, yp1, xp2, yp2)
+                overlap_rate = max([calc_overlap_rate(r,curr_rect) for r in target_rects])
