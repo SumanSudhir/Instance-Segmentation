@@ -1,5 +1,5 @@
 import argparse
-# import better_exceptions
+import better_exceptions
 from pathlib import Path
 import json
 from collections import defaultdict
