@@ -89,7 +89,7 @@ def main():
         img_id_to_meta[img_id].append({"mask_path": mask_path, "class_string": label_name, "bbox": [xp1,xp2,yp1,yp2]})
 
     # use only args.img_num of images of each class
-    target_img_ids = list(set(chain.from_iterable([class_string_to_img_ids[class_string][:args.img_num] for class_string in target_class_strings])))
+    target_img_ids = list(set(chain.from_iterable([class_string_to_img_ids[class_string] for class_string in target_class_strings])))
 
     print("=> use {} images for training".format(len(target_img_ids)))
     bbox_id = 0
