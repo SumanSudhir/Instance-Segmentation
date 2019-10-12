@@ -39,8 +39,8 @@ ROOT_DIR = os.path.abspath("../../")
 
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
-from mrcnn.config import Config
-from mrcnn import model as modellib, utils
+from config import Config
+import model as modellib, utils
 
 # Path to trained weights file
 COCO_MODEL_PATH = os.path.join(os.getcwd(), "mask_rcnn_coco.h5")
@@ -67,8 +67,9 @@ class CocoConfig(Config):
     # Adjust down if you use a smaller GPU.
     IMAGES_PER_GPU = 2
 
+    STEPS_PER_EPOCH = 100
     # Uncomment to train on 8 GPUs (default is 1)
-    # GPU_COUNT = 8
+    GPU_COUNT = 4
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 213  # COCO has 80 classes
@@ -412,9 +413,7 @@ if __name__ == '__main__':
         # Image Augmentation
         # Right/Left flip 50% of the time
         augmentation = imgaug.augmenters.Fliplr(0.5)
-
         # *** This training schedule is an example. Update to your needs ***
-
         # Training - Stage 1
         print("Training network heads")
         model.train(dataset_train, dataset_val,

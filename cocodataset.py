@@ -8,7 +8,7 @@ import pandas as pd
 from tqdm import tqdm
 import cv2
 
-from utils import get_hierarchy, find_contour
+from datautils import get_hierarchy, find_contour
 
 def get_args():
     parser = argparse.ArgumentParser(description="This script creates coco format dataset for maskrcnn-benchmark", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
