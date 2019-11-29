@@ -5,7 +5,7 @@ The full decription of approach is decribed in blog
 
 ## Methods for running the code
 1. Download the code in any directory and make one folder in that directory named datasets and download all images from this link https://storage.googleapis.com/openimages/web/download.html and all the relevent files
-2. Make one directory name logs in parent directory
+2. Make one directory name logs in project directory
 
 The project directory will looks like
 ```
@@ -48,8 +48,11 @@ The datasets directory will be created as
 Project_Directory
 |--datasets
 |  |--coco
-|       |--train2017
 |       |--annotations
+|             |--instances_train2017.json
+|             |--instances_train2017.json
+|       |--train2017
+|       |--val2017
 ```
 This is coco-based format which we can use on MASK R-CNN implementation mmdetection
 ## Training
