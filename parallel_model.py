@@ -44,7 +44,7 @@ class ParallelModel(KM.Model):
         keras_model: The Keras model to parallelize
         gpu_count: Number of GPUs. Must be > 1
         """
-        super(ParallelModel, self).__init__()
+        #super(ParallelModel, self).__init__()
         self.inner_model = keras_model
         self.gpu_count = gpu_count
         merged_outputs = self.make_parallel()
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     from keras.datasets import mnist
     from keras.preprocessing.image import ImageDataGenerator
 
-    GPU_COUNT = 8
+    GPU_COUNT = 2
 
     # Root directory of the project
     ROOT_DIR = os.path.abspath("../")

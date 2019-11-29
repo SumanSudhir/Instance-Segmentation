@@ -8,7 +8,7 @@ import pandas as pd
 from tqdm import tqdm
 import cv2
 
-from datautils import get_hierarchy, find_contour
+from cocoutils import get_hierarchy, find_contour
 
 def get_args():
     parser = argparse.ArgumentParser(description="This script creates coco format dataset for maskrcnn-benchmark", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -68,7 +68,7 @@ def main():
     data_dir = Path(__file__).parent.joinpath('datasets')
     img_dir = data_dir.joinpath(f"{mode}")
     mask_dir = data_dir.joinpath(f"{mode}_masks")
-    mask_csv_path = data_dir.joinpath(f"challenge-2019-{mode}-segmentation-masks.csv")
+    mask_csv_path = data_dir.joinpath(f"challenge-2019-{mode}-segmentation-masks_expanded.csv")
     df = pd.read_csv(str(mask_csv_path))
 
     output_dir = data_dir.joinpath("coco")

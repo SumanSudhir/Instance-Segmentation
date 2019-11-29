@@ -146,7 +146,7 @@ def display_instances(image, boxes, masks, class_ids, class_names,
             ax.add_patch(p)
     ax.imshow(masked_image.astype(np.uint8))
     plt.show()
-
+    
 
 def draw_rois(image, rois, refined_rois, mask, class_ids, class_names, limit=10):
     """
@@ -488,3 +488,5 @@ def plot_loss(loss, val_loss, save=True, log_dir=None):
     else:
         plt.show(block=False)
         plt.pause(0.1)
+
+

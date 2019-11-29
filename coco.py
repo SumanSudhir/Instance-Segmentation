@@ -67,7 +67,7 @@ class CocoConfig(Config):
     # Adjust down if you use a smaller GPU.
     IMAGES_PER_GPU = 2
 
-    STEPS_PER_EPOCH = 100
+    STEPS_PER_EPOCH = 670
     # Uncomment to train on 8 GPUs (default is 1)
     GPU_COUNT = 4
 
