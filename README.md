@@ -1,7 +1,7 @@
 # Instance-Segmentation
 
 This repository contains the code of course project of IIT Bombay EE 782 Advanced Machine Learning course.
-The full decription of approach is decribed in blog
+The full decription of approach is decribed in blog https://medium.com/@sudhiriitb27/instance-segmentation-8bc214d56a09
 
 ## Methods for running the code
 1. Download the code in any directory and make one folder in that directory named datasets and download all images from this link https://storage.googleapis.com/openimages/web/download.html and all the relevent files
